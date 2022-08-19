@@ -1,9 +1,9 @@
+import axios from "axios";
 // import components
 import Slider from "../components/Slider";
 import Options from "../components/Options";
 import LeftSideBar from "../components/LeftSideBar";
 import Products from "../components/Products";
-import axios from "axios";
 
 import styles from "../styles/Home.module.css";
 

@@ -9,17 +9,29 @@ const Slider = () => {
         data-bs-ride="carousel"
       >
         <div
-          className="carousel-inner border border-primary"
-          style={{ height: "250px" }}
+          className="carousel-inner"
+          style={{ height: "300px" }}
         >
-          <div className="carousel-item active">
-            <img src="..." className="d-block w-100" alt="..." />
+          <div className="carousel-item active" style={{ height: "300px" }}>
+            <img
+              src={`https://idbdev.com/motion2/public/images/55.jpg`}
+              className="w-100 h-100"
+              alt="img1"
+            />
           </div>
-          <div className="carousel-item">
-            <img src="..." className="d-block w-100" alt="..." />
+          <div className="carousel-item" style={{ height: "300px" }}>
+            <img
+              src={`https://idbdev.com/motion2/public/images/55.jpg`}
+              className="w-100 h-100"
+              alt="img2"
+            />
           </div>
-          <div className="carousel-item">
-            <img src="..." className="d-block w-100" alt="..." />
+          <div className="carousel-item" style={{ height: "300px" }}>
+            <img
+              src={`https://idbdev.com/motion2/public/images/55.jpg`}
+              className="w-100 h-100"
+              alt="img3"
+            />
           </div>
         </div>
 

@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsCart, BsSuitHeart } from "react-icons/bs";
 
+// components
+import Cart from "./Cart";
+import { CartContext } from "../Layout/MainLayout";
+
 const Header = () => {
+  const { cartItems } = useContext(CartContext);
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-primary text-white">
+      {/* navbar-expand-lg  */}
+      <nav className="navbar navbar-expand-lg bg-primary text-white sticky-top">
         <div className="container-fluid">
           <a className="navbar-brand  text-white" href="#">
             Motion View
@@ -90,14 +97,26 @@ const Header = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link  text-white" href="#">
+                <a
+                  className="nav-link text-white position-relative"
+                  aria-current="page"
+                  href="#cartOffCanvas"
+                  data-bs-toggle="offcanvas"
+                  role="button"
+                  aria-controls="cartOffCanvas"
+                >
                   <BsCart />
+                  <span className="position-absolute top-10 start-100 translate-middle badge rounded bg-white text-dark p-1">
+                    {cartItems.length}
+                    <span className="visually-hidden">unread messages</span>
+                  </span>
                 </a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      <Cart />
     </>
   );
 };

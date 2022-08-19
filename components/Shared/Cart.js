@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MdDeleteForever } from "react-icons/md";
-import {BsCart} from "react-icons/bs"
+import { BsCart } from "react-icons/bs";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 import { CartContext } from "../Layout/MainLayout";
 
 const Cart = () => {
-  const { cartItems, deleteCartItemsHandler } = useContext(CartContext);
+  const { cartItems, addCartItemsHandler, deleteCartItemsHandler } =
+    useContext(CartContext);
 
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
     if (cartItems.length > 0) {
       let price = cartItems
-        .map((item) => parseInt(item.sale_price))
+        .map((item) => parseInt(item.sale_price * item.count))
         .reduce((prev, next) => prev + next);
       setSubtotal(price);
     }
@@ -56,13 +58,21 @@ const Cart = () => {
               {cartItems.map((cartItem) => (
                 <div key={cartItem.id} className="row py-2">
                   <div className="col-2 vstack gap-0">
-                    <button className="border border-0 p-0 m-0 bg-white h5">
+                    <button
+                      className="border border-0 p-0 m-0 bg-white h5"
+                      disabled={cartItem.count >= cartItem.stock && true}
+                      onClick={() => addCartItemsHandler(cartItem)}
+                    >
                       +
                     </button>
                     <button className="border border-2 border-warning rounded bg-white">
-                      {1}
+                      {cartItem.count}
                     </button>
-                    <button className="border border-0  p-0 m-0 bg-white h5">
+                    <button
+                      className="border border-0  p-0 m-0 bg-white h5"
+                      disabled={cartItem.count <= 1 && true}
+                      onClick={() => deleteCartItemsHandler(cartItem, 1)}
+                    >
                       -
                     </button>
                   </div>
@@ -78,9 +88,11 @@ const Cart = () => {
                     <div className="col-9 ">
                       <p className="p-0 m-0 fw-bold">{cartItem.name}</p>
                       <p className="p-0 m-0 text-warning h6">
-                        total price {`${cartItem.sale_price} `}
+                        <TbCurrencyTaka /> total price{" "}
+                        {`${cartItem.sale_price * cartItem.count} `}
                         <span className="text-muted">
-                          ({cartItem.sale_price} x 2)
+                          (<TbCurrencyTaka /> {cartItem.sale_price} x{" "}
+                          {cartItem.count})
                         </span>
                       </p>
                       <p className="p-0 m-0 text-muted">promotion slogan</p>
@@ -89,9 +101,10 @@ const Cart = () => {
 
                   <div className="col-2 p-0 d-flex justify-content-center align-items-center ">
                     <MdDeleteForever
+                      type="button"
                       className="h3"
                       style={{ color: "#FF5722" }}
-                      onClick={() => deleteCartItemsHandler(cartItem)}
+                      onClick={() => deleteCartItemsHandler(cartItem, 2)}
                     />
                   </div>
                 </div>
@@ -100,7 +113,9 @@ const Cart = () => {
           </>
         ) : (
           <div className="border h-100 d-flex flex-column justify-content-center align-items-center">
-            <h4 className="bg-secondary p-4 rounded-circle text-white"><BsCart className="h3" /></h4>
+            <h4 className="bg-secondary p-4 rounded-circle text-white">
+              <BsCart className="h3" />
+            </h4>
             <h4 className="text-muted">Your cart is empty</h4>
           </div>
         )}
@@ -108,9 +123,13 @@ const Cart = () => {
       {/* total  */}
       {cartItems.length > 0 && (
         <div className="p-0 m-0 mt-2 text-center">
-          <p className="mt-2 p-0">Subtotal: {subtotal}</p>
+          <p className="mt-2 p-0">
+            <TbCurrencyTaka /> Subtotal: {subtotal}
+          </p>
           <hr style={{ border: "2px dashed gray" }} />
-          <p className="p-0">Total: {subtotal}</p>
+          <p className="p-0">
+            <TbCurrencyTaka /> Total: {subtotal}
+          </p>
         </div>
       )}
     </div>

@@ -5,7 +5,7 @@ import { BsCart, BsSuitHeart, BsFillStarFill } from "react-icons/bs";
 import { CartContext } from "./Layout/MainLayout";
 
 const Product = ({ product }) => {
-  const { cartItems, cartItemsHandler } = useContext(CartContext);
+  const { cartItems, addCartItemsHandler } = useContext(CartContext);
 
   return (
     <div>
@@ -31,8 +31,19 @@ const Product = ({ product }) => {
               <BsFillStarFill />
             </div>
             <div className="ms-auto hstack gap-2">
-              <BsSuitHeart />{" "}
-              <BsCart onClick={() => cartItemsHandler(product)} />
+              <BsSuitHeart type="button"/>{" "}
+              {product.stock <= 0 ? (
+                <span className="text-mutted">Out of stock</span>
+              ) : (
+                <BsCart
+                  type="button"
+                  className={`${
+                    cartItems.find((item) => item.id === product.id) &&
+                    "text-primary"
+                  }`}
+                  onClick={() => addCartItemsHandler(product)}
+                />
+              )}
             </div>
           </div>
         </div>

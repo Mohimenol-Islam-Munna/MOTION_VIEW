@@ -9,24 +9,51 @@ export const CartContext = createContext();
 const MainLayout = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
+  console.log("cartItems ::", cartItems);
+
   // add cart item handler
-  const cartItemsHandler = (data) => {
-    const getIndex = cartItems.findIndex((product) => product.id === data.id);
+  const addCartItemsHandler = (data) => {
+    const newCartItems = [...cartItems];
+
+    const getIndex = newCartItems.findIndex(
+      (product) => product.id === data.id
+    );
 
     if (getIndex === -1) {
-      setCartItems([...cartItems, data]);
-      localStorage.setItem("cartItems", JSON.stringify([...cartItems, data]));
+      data.count = 1;
+      setCartItems([...newCartItems, data]);
+      localStorage.setItem(
+        "cartItems",
+        JSON.stringify([...newCartItems, data])
+      );
     } else {
-      console.log("This product already in cart");
+      newCartItems[getIndex].count += 1;
+
+      setCartItems([...newCartItems]);
+      localStorage.setItem("cartItems", JSON.stringify([...newCartItems]));
     }
   };
 
   // delete cart item handler
-  const deleteCartItemsHandler = (data) => {
+  const deleteCartItemsHandler = (data, type) => {
     setCartItems((prevData) => {
-      const afterDelete = prevData.filter((item) => item.id !== data.id);
-      localStorage.setItem("cartItems", JSON.stringify([...afterDelete]));
-      return [...afterDelete];
+      if (type === 1) {
+        const newDeleCartItems = [...prevData];
+        const getIndex = newDeleCartItems.findIndex(
+          (product) => product.id === data.id
+        );
+        newDeleCartItems[getIndex].count -= 1;
+
+        localStorage.setItem(
+          "cartItems",
+          JSON.stringify([...newDeleCartItems])
+        );
+        return [...newDeleCartItems];
+      } else {
+        const afterDelete = prevData.filter((item) => item.id !== data.id);
+        localStorage.setItem("cartItems", JSON.stringify([...afterDelete]));
+        return [...afterDelete];
+      }
     });
   };
 
@@ -41,7 +68,7 @@ const MainLayout = ({ children }) => {
     <CartContext.Provider
       value={{
         cartItems: cartItems,
-        cartItemsHandler: cartItemsHandler,
+        addCartItemsHandler: addCartItemsHandler,
         deleteCartItemsHandler: deleteCartItemsHandler,
       }}
     >

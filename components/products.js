@@ -3,11 +3,15 @@ import React from "react";
 // import components
 import Product from "./Product";
 
-const Products = () => {
+const Products = ({ data }) => {
+  // console.log("data in products component :::", data);
   return (
-    <div>
-      <h2>products component</h2>
-      <Product />
+    <div className="row gy-3">
+      {data?.map((product) => (
+        <div className="col-md-4" key={product.id}>
+          <Product product={product} />
+        </div>
+      ))}
     </div>
   );
 };

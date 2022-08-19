@@ -2,10 +2,10 @@ import React from "react";
 
 const Slider = () => {
   return (
-    <div className="container p-5 bg-secondary">
+    <div className="container-fluid p-0 bg-secondary">
       <div
         id="carouselExampleControls"
-        className="carousel slide"
+        className="container p-0 carousel slide"
         data-bs-ride="carousel"
       >
         <div

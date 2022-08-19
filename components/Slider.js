@@ -2,7 +2,7 @@ import React from "react";
 
 const Slider = () => {
   return (
-    <div className="container-fluid p-0 bg-secondary">
+    <div className="container-fluid p-0">
       <div
         id="carouselExampleControls"
         className="container p-0 carousel slide"

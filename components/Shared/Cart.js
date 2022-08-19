@@ -3,14 +3,19 @@ import Link from "next/link";
 import { MdDeleteForever } from "react-icons/md";
 import { BsCart } from "react-icons/bs";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { useRouter } from "next/router";
 
 import { CartContext } from "../Layout/MainLayout";
 
 const Cart = () => {
+  const router = useRouter();
   const { cartItems, addCartItemsHandler, deleteCartItemsHandler } =
     useContext(CartContext);
-
   const [subtotal, setSubtotal] = useState(0);
+
+  const redirecthandler = () => {
+    // router.push("/checkout");
+  };
 
   useEffect(() => {
     if (cartItems.length > 0) {
@@ -134,8 +139,11 @@ const Cart = () => {
             </p>
           </div>
           <div className="mb-2">
-            <Link href="checkout">
-              <button className="btn btn-warning w-100 text-white fw-bold">
+            <Link href="/checkout">
+              <button
+                className="btn btn-warning w-100 text-white fw-bold"
+                onClick={redirecthandler}
+              >
                 Checkout
               </button>
             </Link>

@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 
+import Hoc from "../../components/HOC/Hoc";
+
 export const getServerSideProps = async ({ req }) => {
   return {
     props: {
@@ -36,7 +38,7 @@ const Checkout = ({ data }) => {
     <>
       <div className="container py-5">
         <div className="row ">
-          <div className="col-9">
+          <div className="col-md-9">
             {/* shopping cart  */}
             <div>
               <h2>Shopping Cart</h2>
@@ -173,7 +175,7 @@ const Checkout = ({ data }) => {
               </form>
             </div>
           </div>
-          <div className="col-3"></div>
+          <div className="col-md-3"></div>
         </div>
       </div>
       <ToastContainer />
@@ -181,4 +183,4 @@ const Checkout = ({ data }) => {
   );
 };
 
-export default Checkout;
+export default Hoc(Checkout);

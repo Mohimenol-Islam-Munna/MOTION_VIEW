@@ -10,8 +10,6 @@ const Login = () => {
   const router = useRouter();
 
   const loginHandler = async (data) => {
-    console.log("login handeler ::", data);
-
     try {
       const res = await axios.post("/api/login", data);
       if (res?.data?.login && res?.data?.data) {
@@ -19,7 +17,13 @@ const Login = () => {
           position: "top-right",
           autoClose: 1000,
         });
-        router.push("/");
+        reset();
+
+        router.push(
+          localStorage.getItem("referer")
+            ? `${localStorage.getItem("referer")}`
+            : "/"
+        );
       } else {
         toast.warning("Login failled", {
           position: "top-right",

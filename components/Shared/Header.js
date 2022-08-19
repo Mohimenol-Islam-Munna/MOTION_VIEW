@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import Link from "next/link";
 import { BiUser } from "react-icons/bi";
 import { BsCart, BsSuitHeart } from "react-icons/bs";
 
@@ -13,7 +14,7 @@ const Header = () => {
     <>
       {/* navbar-expand-lg  */}
       <nav className="navbar navbar-expand-lg bg-primary text-white sticky-top">
-        <div className="container-fluid">
+        <div className="container px-3 py-0 px-lg-0">
           <a className="navbar-brand  text-white" href="#">
             Motion View
           </a>
@@ -36,13 +37,11 @@ const Header = () => {
           >
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a
-                  className="nav-link active  text-white"
-                  aria-current="page"
-                  href="#"
-                >
-                  Campaign
-                </a>
+                <Link href="/" passHref>
+                  <a className="nav-link active text-white" aria-current="page">
+                    Home
+                  </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link  text-white" href="#">
@@ -81,9 +80,9 @@ const Header = () => {
               </button>
             </form>
 
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link  text-white" href="#">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li className="">
+                <a className="nav-link text-white" href="#">
                   <BsSuitHeart />
                 </a>
               </li>
@@ -106,7 +105,7 @@ const Header = () => {
                   aria-controls="cartOffCanvas"
                 >
                   <BsCart />
-                  <span className="position-absolute top-10 start-100 translate-middle badge rounded bg-white text-dark p-1">
+                  <span className="position-absolute top-10 start--100 translate-middle badge rounded bg-white text-dark p-1">
                     {cartItems.length}
                     <span className="visually-hidden">unread messages</span>
                   </span>

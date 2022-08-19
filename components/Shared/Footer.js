@@ -7,18 +7,18 @@ const Footer = () => {
     <div style={{ backgroundColor: "#18253A" }} className="py-5">
       <div className="container text-white">
         <div className="row">
-          <div className="col">
+          <div className="col-md text-center">
             <h2>Motion View</h2>
           </div>
 
-          <div className="col p-0">
+          <div className="col-md p-0 text-center  mt-3 mt-md-0">
             <ul className="p-0 mb-0">
               <li className="list-group-item">An item lorem10</li>
               <li className="list-group-item">A second item</li>
               <li className="list-group-item">A third item</li>
             </ul>
           </div>
-          <div className="col p-0">
+          <div className="col-md p-0 text-center mt-3 mt-md-0">
             <ul className=" p-0 mb-0">
               <li className="list-group-item">
                 {" "}

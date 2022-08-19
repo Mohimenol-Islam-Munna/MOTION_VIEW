@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import Link from "next/link";
 import { MdDeleteForever } from "react-icons/md";
 import { BsCart } from "react-icons/bs";
 import { TbCurrencyTaka } from "react-icons/tb";
@@ -122,15 +123,24 @@ const Cart = () => {
       </div>
       {/* total  */}
       {cartItems.length > 0 && (
-        <div className="p-0 m-0 mt-2 text-center">
-          <p className="mt-2 p-0">
-            <TbCurrencyTaka /> Subtotal: {subtotal}
-          </p>
-          <hr style={{ border: "2px dashed gray" }} />
-          <p className="p-0">
-            <TbCurrencyTaka /> Total: {subtotal}
-          </p>
-        </div>
+        <>
+          <div className="p-0 m-0 mt-2 text-center">
+            <p className="mt-2 p-0">
+              <TbCurrencyTaka /> Subtotal: {subtotal}
+            </p>
+            <hr style={{ border: "2px dashed gray" }} />
+            <p className="p-0">
+              <TbCurrencyTaka /> Total: {subtotal}
+            </p>
+          </div>
+          <div className="mb-2">
+            <Link href="checkout">
+              <button className="btn btn-warning w-100 text-white fw-bold">
+                Checkout
+              </button>
+            </Link>
+          </div>
+        </>
       )}
     </div>
   );

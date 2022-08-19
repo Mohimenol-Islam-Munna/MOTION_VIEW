@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 // import components
 import Slider from "../components/Slider";
 import Options from "../components/Options";
 import LeftSideBar from "../components/LeftSideBar";
 import Products from "../components/Products";
-
-import Hoc from "../components/HOC/Hoc";
 
 export const getStaticProps = async () => {
   try {

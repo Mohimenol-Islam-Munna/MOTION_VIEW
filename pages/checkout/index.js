@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../../components/Layout/MainLayout";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,7 +16,7 @@ export const getServerSideProps = async ({ req }) => {
 };
 
 const Checkout = ({ data }) => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, deleteAllItemsFromCartHandler } = useContext(CartContext);
   const { handleSubmit, reset, register } = useForm();
 
   const confirmOrderHandler = (data) => {
@@ -31,6 +31,8 @@ const Checkout = ({ data }) => {
       progress: undefined,
     });
 
+    // delete all items from cart and localstorage after confirm order
+    deleteAllItemsFromCartHandler();
     localStorage.removeItem("cartItems");
 
     reset();

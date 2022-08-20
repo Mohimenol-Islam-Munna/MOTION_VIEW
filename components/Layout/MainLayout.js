@@ -9,6 +9,8 @@ export const CartContext = createContext();
 const MainLayout = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
+  console.log("cartItems ::",cartItems);
+
   // add cart item handler
   const addCartItemsHandler = (data) => {
     const newCartItems = [...cartItems];
@@ -55,6 +57,10 @@ const MainLayout = ({ children }) => {
     });
   };
 
+  const deleteAllItemsFromCartHandler = () => {
+    setCartItems([]);
+  };
+
   useEffect(() => {
     if (localStorage.cartItems) {
       const localData = JSON.parse(localStorage.getItem("cartItems"));
@@ -68,6 +74,7 @@ const MainLayout = ({ children }) => {
         cartItems: cartItems,
         addCartItemsHandler: addCartItemsHandler,
         deleteCartItemsHandler: deleteCartItemsHandler,
+        deleteAllItemsFromCartHandler: deleteAllItemsFromCartHandler,
       }}
     >
       <div>

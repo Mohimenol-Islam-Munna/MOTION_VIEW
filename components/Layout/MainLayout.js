@@ -9,8 +9,6 @@ export const CartContext = createContext();
 const MainLayout = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  console.log("cartItems ::",cartItems);
-
   // add cart item handler
   const addCartItemsHandler = (data) => {
     const newCartItems = [...cartItems];

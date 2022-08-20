@@ -13,10 +13,6 @@ const Cart = () => {
     useContext(CartContext);
   const [subtotal, setSubtotal] = useState(0);
 
-  const redirecthandler = () => {
-    // router.push("/checkout");
-  };
-
   useEffect(() => {
     if (cartItems.length > 0) {
       let price = cartItems
@@ -142,7 +138,7 @@ const Cart = () => {
             <Link href="/checkout">
               <button
                 className="btn btn-warning w-100 text-white fw-bold"
-                onClick={redirecthandler}
+                data-bs-dismiss="offcanvas"
               >
                 Checkout
               </button>

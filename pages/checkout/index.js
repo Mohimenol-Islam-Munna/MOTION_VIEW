@@ -31,6 +31,8 @@ const Checkout = ({ data }) => {
       progress: undefined,
     });
 
+    localStorage.removeItem("cartItems");
+
     reset();
   };
 
